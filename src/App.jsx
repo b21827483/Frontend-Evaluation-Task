@@ -1,14 +1,10 @@
 import './App.css'
-import Navbar from './components/Shared/Navbar'
-
-import { Container } from '@mui/material'
+import Datatable from './Pages/Datatable'
 
 function App() {
 
   return (
-    <Container sx={{width: "100%"}} disableGutters maxWidth={false}>
-      <Navbar />
-    </Container>
+    <Datatable />
   )
 }
 

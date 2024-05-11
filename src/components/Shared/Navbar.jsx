@@ -11,7 +11,7 @@ function Navbar() {
                 <Container sx={{display:"flex", alignItems: "center", m:0}} disableGutters maxWidth={false}>
                     <LogoButton />
                 </Container>
-                <Container sx={{position: "relative", top: "13px"}} disableGutters maxWidth={false}>
+                <Container sx={{position: "relative", top: "17px"}} disableGutters maxWidth={false}>
                     <TabsNavbar />
                 </Container>
                 <Container sx={{display: "flex", justifyContent: "flex-end"}} disableGutters maxWidth={false}>

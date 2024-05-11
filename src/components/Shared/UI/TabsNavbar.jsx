@@ -28,8 +28,8 @@ function TabsNavbar() {
                     height: "2px",
                 }
             }}>
-                <Tab sx={tabStyle} label={"All Users"} />
-                <Tab sx={tabStyle} label="Contributers"/>
+                <Tab sx={tabStyle} label="All Users" />
+                <Tab sx={tabStyle} label="Contributor"/>
                 <Tab sx={tabStyle} label="Author"/>
                 <Tab sx={tabStyle} label="Adminstrator"/>
                 <Tab sx={tabStyle} label="Subscriber"/>
