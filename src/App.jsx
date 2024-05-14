@@ -1,10 +1,10 @@
 import './App.css'
-import Datatable from './Pages/Datatable'
+import DatatablePage from './Pages/DatatablePage';
 
 function App() {
 
   return (
-    <Datatable />
+    <DatatablePage />
   )
 }
 
