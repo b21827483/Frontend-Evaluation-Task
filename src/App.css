@@ -14,3 +14,7 @@ button.MuiTab-root {
 div.MuiTabs-flexContainer {
   gap: 43px;
 }
+
+.css-d70gcg-MuiButtonBase-root-MuiMenuItem-root+.MuiDivider-root {
+  margin: 0;
+}

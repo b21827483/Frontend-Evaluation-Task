@@ -1,10 +1,13 @@
+import { Fragment } from 'react';
 import './App.css'
 import DatatablePage from './Pages/DatatablePage';
 
 function App() {
 
   return (
-    <DatatablePage />
+    <Fragment>
+      <DatatablePage />
+    </Fragment>
   )
 }
 
