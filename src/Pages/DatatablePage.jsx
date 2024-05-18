@@ -19,7 +19,7 @@ function DatatablePage() {
     
     return (
         <Container sx={{width: "100%"}} disableGutters maxWidth={false}>
-            {isFormShown && <Container> <UserFormPage /> </Container>}
+            {isFormShown && <Container> <UserFormPage onHideForm={hideFormHandler} /> </Container>}
             <Navbar onShowForm={showFormHandler} />
             <Line />
             <SearchBar />
