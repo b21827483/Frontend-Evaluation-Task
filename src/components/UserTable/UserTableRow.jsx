@@ -24,8 +24,8 @@ function UserTableRow({visibleRows, handleClick, selected}) {
                     checked={isItemSelected}
                   />
                 </TableCell>
-                <TableCell  sx={{height: "42px",py:"24px",width: "42px"}} align="left">
-                  <img src={user.avatar} style={{borderRadius: "5px"}} height={42} width={42}/>
+                <TableCell  sx={{height: "50px",py:"24px",width: "50px"}} align="left">
+                  <img src={user.avatar} style={{borderRadius: "5px"}} height={50} width={50}/>
                 </TableCell>
                 <TableCell sx={{height: "42px",py:"24px",minWidth: "250px", fontSize:"12px", fontWeight:"600", color:"#3A3C40"}} align="left">
                   {user.name}</TableCell>

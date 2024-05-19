@@ -1,4 +1,6 @@
 import { Container, Typography, List, ListItem } from "@mui/material"
+import { useContext } from "react";
+import { UserFormContext } from "../../store/UserFormContext";
 
 const avatars = [
     {
@@ -28,6 +30,8 @@ const avatars = [
 ]
 
 function UserFormAvatars() {
+    const {onSelectAvatar} = useContext(UserFormContext);
+
     return (
         <Container disableGutters>
                 <Typography label="select avatar"
@@ -37,7 +41,7 @@ function UserFormAvatars() {
                         Select Avatar
                 </Typography>
                 <List sx={{display:"flex", gap: "10px"}}>
-                    {avatars.map(avatar => {return <ListItem key={avatar.url} sx={{width:"40px", height:"40px", p:0, mt:"16px",}}>
+                    {avatars.map(avatar => {return <ListItem key={avatar.url} onClick={onSelectAvatar} sx={{width:"40px", height:"40px", cursor: "pointer", p:0, mt:"16px",}}>
                         <img style={{backgroundColor: avatar.background, borderRadius:"5px"}} src={avatar.url} width={40} height={40}/>
                     </ListItem>})}    
                 </List>    

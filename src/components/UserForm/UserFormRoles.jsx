@@ -1,18 +1,15 @@
-import { useState } from "react";
-import { FormControl, InputLabel, Select, List, MenuItem } from "@mui/material";
+import { useContext } from "react";
+import { FormControl, InputLabel, Select, List, MenuItem, Container } from "@mui/material";
 import Line from "../Shared/UI/Line";
+import { UserFormContext } from "../../store/UserFormContext";
 
 const roles = [
-    {label: "Contributor"}, {label: "Subscriber"}, {label: "Author"}, {label: "Administrator"}, 
+    {label: "Contributor"}, {label: "Subscriber"}, {label: "Author"}, {label: "Adminstrator"}, 
 ]
 
 function UserFormRoles() {
-    const [role, setRole] = useState("");
-
-    const handleChange = (event) => {
-        setRole(event.target.value);
-    };
-
+    const {role, changeRoleHandler} = useContext(UserFormContext);
+    
     return (
         <FormControl sx={{mb:"30px"}} fullWidth>
             <InputLabel id="role-label">Role</InputLabel>
@@ -21,16 +18,12 @@ function UserFormRoles() {
                 id="select-role"
                 value={role}
                 label="Role"
-                onChange={handleChange}
+                onChange={changeRoleHandler}
             >
-                {roles.map(role => (
-                    <List>    
-                        <MenuItem key={role.label} value={role.label} sx={{height:"12px", py:"4px", fontSize:"10px", fontWeight:"600",  color:"#3A3C40"}}>
-                            {role.label}
-                        </MenuItem>
-                        <Line />
-                    </List>
-                ))}
+                {roles.map(roleElem => (
+                <MenuItem key={roleElem.label} value={roleElem.label} sx={{height:"16px", py:"4px", fontSize:"10px", fontWeight:600,  color:"#3A3C40"}}>
+                                {roleElem.label}
+                </MenuItem>))}
             </Select>
         </FormControl>
     )

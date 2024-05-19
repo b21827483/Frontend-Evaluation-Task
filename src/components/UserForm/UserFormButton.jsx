@@ -13,7 +13,8 @@ function UserFormButton() {
                     borderRadius: "4px",
                     paddign:"15px 20px 15px 20px",
                     mt:"26px"}} 
-                variant="contained">
+                variant="contained"
+                type="submit">
                 <Typography sx={{fontSize: "13px", lineHeight: "15.85px", textTransform: "none"}}>
                     Create User
                 </Typography>

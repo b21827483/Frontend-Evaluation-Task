@@ -1,11 +1,9 @@
 import { Container, Input } from "@mui/material";
-import { useState } from "react"
+import { useContext } from "react";
+import { UserFormContext } from "../../store/UserFormContext";
 
 function UserFormInputs() {
-    
-    const [name, setName] = useState("");
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
+    const {name, username, email, changeNameHandler, changeUsernameHandler, changeEmailHandler} = useContext(UserFormContext);
 
     const inputStyle = {width:"100%",
                         border: "2px solid #E3E6EB",
@@ -21,19 +19,20 @@ function UserFormInputs() {
             <Input sx={inputStyle}
                    id="name" 
                    value={name}
-                   onChange={(e) => {setName(e.target.value)}}
+                   onChange={changeNameHandler}
                    placeholder="Full Name"
                    disableUnderline />
             <Input sx={inputStyle}
                    id="username" 
                    value={username}
-                   onChange={(e) => {setUsername(e.target.value)}}
+                   onChange={changeUsernameHandler}
                    placeholder="Username"
                    disableUnderline/>
             <Input sx={inputStyle}
                    id="email" 
+                   type="email"
                    value={email}
-                   onChange={(e) => {setEmail(e.target.value)}}
+                   onChange={changeEmailHandler}
                    placeholder="Email Address"
                    disableUnderline/>
         </Container>
