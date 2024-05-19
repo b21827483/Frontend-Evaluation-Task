@@ -19,7 +19,7 @@ function Navbar(props) {
                     <LogoButton />
                 </Container>
                 <Container sx={{position: "relative", top: "17px"}} disableGutters maxWidth={false}>
-                    <TabsNavbar />
+                    <TabsNavbar setFilterByRole={props.setFilterByRole} />
                 </Container>
                 <Container sx={{display: "flex", justifyContent: "flex-end"}} disableGutters maxWidth={false}>
                     <AddUserButton onClick={props.onShowForm} />

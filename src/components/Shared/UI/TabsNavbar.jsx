@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Tab, Tabs } from "@mui/material";
 
-function TabsNavbar() {
+function TabsNavbar(props) {
 
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        props.setFilterByRole(newValue);
     };
 
     const tabStyle = {textTransform: "none",

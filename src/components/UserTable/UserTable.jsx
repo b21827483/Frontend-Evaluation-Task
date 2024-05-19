@@ -1,16 +1,47 @@
-import { useState, useMemo } from "react";
-import { Box, Table, TableContainer, TableBody, TableRow, TableCell, TablePagination, Checkbox, Pagination } from "@mui/material";
+import { useState, useMemo, useEffect } from "react";
+import { Box, Table, TableContainer, Pagination } from "@mui/material";
+import axios, { all } from "axios";
 import UserTableHeader from "./UserTableHeader";
-import { rows } from "../../dummyData";
 import UserTableRow from "./UserTableRow";
 
-function UserTable() {
+function UserTable(props) {
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const {filterByRole} = props;
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const response = await axios("https://663f77dae3a7c3218a4d2577.mockapi.io/api/users");
+      setAllUsers(response.data);  
+    }
+
+    fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    if (filterByRole === 0){
+      setUsers(allUsers);
+    }
+    else if(filterByRole === 1) {
+      setUsers(allUsers.filter(user => user.role === "Contributor"))
+    }
+    else if(filterByRole === 2) {
+      setUsers(allUsers.filter(user => user.role === "Author"))
+    }
+    else if(filterByRole === 3) {
+      setUsers(allUsers.filter(user => user.role === "Adminstrator"))
+    }
+    else if(filterByRole === 4) {
+      setUsers(allUsers.filter(user => user.role === "Subscriber"))
+    }
+  }, [filterByRole, allUsers])
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map(n => n.id);
+      const newSelected = users.map(n => n.id);
       setSelected(newSelected);
       return;
     }
@@ -41,16 +72,17 @@ function UserTable() {
   };
 
   const totalPageNum = useMemo(() => {
-    if (rows.length !== 0) {
-      return parseInt(rows.length / 10) + 1
+    
+    if ((users.length % 10) !== 0) {
+      return parseInt(users.length / 10) + 1
     }
     else {
-      return parseInt(rows.length / 10)
+      return parseInt(users.length / 10)
     }
-  },[rows]);
+  },[users]);
 
   const visibleRows = useMemo(() => 
-    rows.slice(page * 10, page * 10 + 10), [page, 10],
+    users.slice(page * 10, page * 10 + 10), [users, page],
   );
 
   return (
@@ -63,7 +95,7 @@ function UserTable() {
           <UserTableHeader
             numSelected={selected.length}
             onSelectAllClick={handleSelectAllClick}
-            rowCount={rows.length}
+            rowCount={users.length}
           />
           <UserTableRow visibleRows={visibleRows} selected={selected} handleClick={handleClick} />
         </Table>
