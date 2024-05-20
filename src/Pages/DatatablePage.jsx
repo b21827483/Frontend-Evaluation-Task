@@ -8,24 +8,14 @@ import UserFormPage from "./UserFormPage"
 import { UserFormContext } from "../store/UserFormContext";
 
 function DatatablePage() {
-    const [isFormShown, setFormShown] = useState(false);
     const [filterByRole, setFilterByRole] = useState(0);
 
-    const {resetFormHandler} = useContext(UserFormContext);
+    const {isFormShown} = useContext(UserFormContext);
 
-    const showFormHandler = () => {
-        setFormShown(true);
-    }
-
-    const hideFormHandler = () => {
-        setFormShown(false);
-        resetFormHandler();
-    }
-    
     return (
         <Container sx={{width: "100%"}} disableGutters maxWidth={false}>
-            {isFormShown && <Container> <UserFormPage onHideForm={hideFormHandler} /> </Container>}
-            <Navbar onShowForm={showFormHandler} setFilterByRole={setFilterByRole} />
+            {isFormShown && <Container> <UserFormPage /> </Container>}
+            <Navbar setFilterByRole={setFilterByRole} />
             <Line />
             <SearchBar />
             <UserTable filterByRole={filterByRole} />

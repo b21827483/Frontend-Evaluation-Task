@@ -8,7 +8,7 @@ import UserFormRoles from "./UserFormRoles";
 import UserFormSnackbar from "./UserFormSnackbar";
 
 function UserForm() {
-    const {name, username, email, role, targetAvatar, openSnackbarHandler, openSnackbar} = useContext(UserFormContext);
+    const {id, name, username, email, role, targetAvatar, openSnackbarHandler, openSnackbar, hideFormHandler} = useContext(UserFormContext);
     const [message, setMessage] = useState("");
     const [bgdColor, setBgColor] = useState(null);
 
@@ -27,17 +27,33 @@ function UserForm() {
             }
 
         try {
-            await axios.post("https://663f77dae3a7c3218a4d2577.mockapi.io/api/users", {
-                name: name,
-                username: username,
-                email: email,
-                role: role,
-                avatar: targetAvatar.src
-            });
+            // Update existing user
+            if (id !== null) {
+                await axios.put(`https://663f77dae3a7c3218a4d2577.mockapi.io/api/users/${id}`, {
+                    name: name,
+                    username: username,
+                    email: email,
+                    role: role,
+                    avatar: targetAvatar.src
+                });
+                setMessage("User updated successfully.");
+
+            // Create new User    
+            } else {
+                await axios.post("https://663f77dae3a7c3218a4d2577.mockapi.io/api/users", {
+                    name: name,
+                    username: username,
+                    email: email,
+                    role: role,
+                    avatar: targetAvatar.src
+                });
+                setMessage("User added successfully.");
+            }
             setBgColor({backgroundColor:"green"});
-            setMessage("User added successfully.");
             openSnackbarHandler();
-            
+            setTimeout(() => {
+                hideFormHandler()
+            }, "2000");
         }
         catch (err) {
             setBgColor({backgroundColor:"red"});

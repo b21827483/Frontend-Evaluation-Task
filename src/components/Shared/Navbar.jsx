@@ -22,7 +22,7 @@ function Navbar(props) {
                     <TabsNavbar setFilterByRole={props.setFilterByRole} />
                 </Container>
                 <Container sx={{display: "flex", justifyContent: "flex-end"}} disableGutters maxWidth={false}>
-                    <AddUserButton onClick={props.onShowForm} />
+                    <AddUserButton />
                 </Container>
             </Container>
         </Container>
