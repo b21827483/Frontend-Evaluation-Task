@@ -17,7 +17,7 @@ function DatatablePage() {
             {isFormShown && <Container> <UserFormPage /> </Container>}
             <Navbar setFilterByRole={setFilterByRole} />
             <Line />
-            <SearchBar />
+            <SearchBar filterByRole={filterByRole} />
             <UserTable filterByRole={filterByRole} />
         </Container>
     )

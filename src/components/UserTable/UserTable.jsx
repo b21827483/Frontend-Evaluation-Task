@@ -8,7 +8,7 @@ import { UserTableContext } from "../../store/UserTableContext";
 function UserTable(props) {
   const {allUsers, page, totalPageNum, changePageHandler, setUsers, getAllUsers} = useContext(UserTableContext);
   const {filterByRole} = props;
-  
+
   useEffect(() => {
     getAllUsers();
   }, []);

@@ -1,10 +1,37 @@
 import { Button, Container, TextField, Typography } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserTableContext } from "../../store/UserTableContext";
 
-function SearchBar() {
+function SearchBar({filterByRole}) {
+    const [searchKey, setSearchKey] = useState("");
 
-    const {deleteSelectedHandler} = useContext(UserTableContext);
+    const {users, setUsers, allUsers, deleteSelectedHandler} = useContext(UserTableContext);
+
+    const searchHandler = (event) => {
+        const searchInput = event.target.value;
+        setSearchKey(searchInput);
+        const filteredUsers = users.filter(user => user.username.toLowerCase().includes(searchInput.toLowerCase()) ||
+                                                       user.email.toLowerCase().includes(searchInput.toLowerCase()) );
+        setUsers(filteredUsers);
+
+        if (searchInput === "") {
+            if (filterByRole === 0){
+                setUsers(allUsers);
+            }
+            else if(filterByRole === 1) {
+                setUsers(allUsers.filter(user => user.role === "Contributor"))
+            }
+            else if(filterByRole === 2) {
+                setUsers(allUsers.filter(user => user.role === "Author"))
+            }
+            else if(filterByRole === 3) {
+                setUsers(allUsers.filter(user => user.role === "Adminstrator"))
+            }
+            else if(filterByRole === 4) {
+                setUsers(allUsers.filter(user => user.role === "Subscriber"))
+            }
+        }
+    }
 
     return (
         <Container sx={{display: "flex",justifyContent:"space-between",alignItems:"center",width: "100%", height:"40px", px: "20px", py: "30px"}} disableGutters maxWidth={false}>
@@ -14,7 +41,9 @@ function SearchBar() {
                 </svg>
                 <TextField sx={{"& fieldset": { border: 'none', width: "100%" }}}
                            inputProps={{style: {fontSize: "13px", width: "100%" }}} 
-                           id="searchbar" placeholder="Search..." fullWidth />
+                           id="searchbar" placeholder="Search..." fullWidth
+                           value={searchKey}
+                           onChange={searchHandler}/>
             </Container>
             <Button onClick={deleteSelectedHandler}  sx={{display: "flex", alignItems: "center", height: "30px", gap: "10px"}}>
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
