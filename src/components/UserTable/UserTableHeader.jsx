@@ -1,4 +1,6 @@
 import { TableHead, TableRow, TableCell, Checkbox} from "@mui/material";
+import { useContext } from "react";
+import { UserTableContext } from "../../store/UserTableContext";
 
 const headers = [
     {
@@ -32,8 +34,10 @@ const headers = [
       label: 'Edit',}
   ];
 
-function UserTableHeader(props) {
-    const { onSelectAllClick, numSelected, rowCount} = props;
+function UserTableHeader() {
+    const { handleSelectAllClick, selected, users} = useContext(UserTableContext);
+    const rowCount = users.length;
+    const numSelected = selected.length;
   
     return (
       <TableHead sx={{backgroundColor: "#F5F5F7"}}>
@@ -43,7 +47,7 @@ function UserTableHeader(props) {
               color="primary"
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={rowCount > 0 && numSelected === rowCount}
-              onChange={onSelectAllClick}
+              onChange={handleSelectAllClick}
             />
           </TableCell>
           {headers.map(header => 

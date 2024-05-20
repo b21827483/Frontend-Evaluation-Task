@@ -3,10 +3,11 @@ import axios from "axios";
 import UserFormSnackbar from "../UserForm/UserFormSnackbar";
 import { TableBody, TableRow, TableCell, Checkbox } from "@mui/material";
 import { UserFormContext } from "../../store/UserFormContext";
+import { UserTableContext } from "../../store/UserTableContext";
 
-
-function UserTableRow({visibleRows, handleClick, selected}) {
+function UserTableRow() {
     const {showFormHandler, openSnackbar, openSnackbarHandler} = useContext(UserFormContext);
+    const {visibleRows, handleClick, selected} = useContext(UserTableContext);
 
     const isSelected = id => selected.indexOf(id) !== -1;
 
