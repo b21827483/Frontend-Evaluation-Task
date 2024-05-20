@@ -7,7 +7,7 @@ import { UserTableContext } from "../../store/UserTableContext";
 
 function UserTableRow() {
     const {showFormHandler, openSnackbar, openSnackbarHandler} = useContext(UserFormContext);
-    const {visibleRows, handleClick, selected} = useContext(UserTableContext);
+    const {visibleRows, handleClick, selected, getAllUsers} = useContext(UserTableContext);
 
     const isSelected = id => selected.indexOf(id) !== -1;
 
@@ -15,6 +15,7 @@ function UserTableRow() {
       if (window.confirm("Do you want to delete the user?")) {
         await axios.delete(`https://663f77dae3a7c3218a4d2577.mockapi.io/api/users/${id}`);
         openSnackbarHandler();
+        getAllUsers();
       }
     }
     

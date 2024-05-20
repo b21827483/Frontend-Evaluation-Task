@@ -6,9 +6,11 @@ import UserFormButton from "./UserFormButton";
 import UserFormInputs from "./UserFormInputs";
 import UserFormRoles from "./UserFormRoles";
 import UserFormSnackbar from "./UserFormSnackbar";
+import { UserTableContext } from "../../store/UserTableContext";
 
 function UserForm() {
     const {id, name, username, email, role, targetAvatar, openSnackbarHandler, openSnackbar, hideFormHandler} = useContext(UserFormContext);
+    const {getAllUsers} = useContext(UserTableContext);
     const [message, setMessage] = useState("");
     const [bgdColor, setBgColor] = useState(null);
 
@@ -54,6 +56,7 @@ function UserForm() {
             setTimeout(() => {
                 hideFormHandler()
             }, "2000");
+            getAllUsers();
         }
         catch (err) {
             setBgColor({backgroundColor:"red"});

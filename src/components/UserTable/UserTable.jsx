@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { Box, Table, TableContainer, Pagination } from "@mui/material";
 import axios from "axios";
 import UserTableHeader from "./UserTableHeader";
@@ -6,15 +6,11 @@ import UserTableRow from "./UserTableRow";
 import { UserTableContext } from "../../store/UserTableContext";
 
 function UserTable(props) {
-  const {allUsers, page, totalPageNum, changePageHandler, setUsers, setAllUsers} = useContext(UserTableContext);
+  const {allUsers, page, totalPageNum, changePageHandler, setUsers, getAllUsers} = useContext(UserTableContext);
   const {filterByRole} = props;
-
+  
   useEffect(() => {
-    async function fetchUsers() {
-      const response = await axios("https://663f77dae3a7c3218a4d2577.mockapi.io/api/users");
-      setAllUsers(response.data);  
-    }
-    fetchUsers();
+    getAllUsers();
   }, []);
 
   useEffect(() => {

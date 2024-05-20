@@ -1,4 +1,5 @@
 import { createContext, useState, useMemo } from "react";
+import axios from "axios";
 
 export const UserTableContext = createContext();
 
@@ -8,6 +9,11 @@ function UserTableProvider({children}) {
     const [allUsers, setAllUsers] = useState([]);
     const [users, setUsers] = useState([]);
     
+    const getAllUsers = async () => {
+        const response = await axios("https://663f77dae3a7c3218a4d2577.mockapi.io/api/users");
+        setAllUsers(response.data); 
+    }
+
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
         const newSelected = users.map(n => n.id);
@@ -54,9 +60,23 @@ function UserTableProvider({children}) {
         setPage(newPage - 1);
     };
 
+    const deleteSelectedHandler = async (event) => {
+        if (selected.length === 0) {
+            window.alert("You didn't select any user.");
+        } else {
+            if (window.confirm("Do you want to delete the selected users?")) {
+                    for (const id of selected) {
+                        console.log(id)
+                        await axios.delete(`https://663f77dae3a7c3218a4d2577.mockapi.io/api/users/${id}`);
+                };
+            }
+            getAllUsers();
+        }
+    }
+
     return (
         <UserTableContext.Provider value={{page, selected, allUsers, users, visibleRows, totalPageNum, setAllUsers, setUsers,
-                                           handleClick, changePageHandler, handleSelectAllClick,
+                                           handleClick, changePageHandler, handleSelectAllClick, deleteSelectedHandler, getAllUsers
         }}>
             {children}
         </UserTableContext.Provider>
