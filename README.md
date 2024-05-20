@@ -1,8 +1,12 @@
-# React + Vite
+# Frontend Evaluation Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Run development mode with below command:
 
-Currently, two official plugins are available:
+```
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project contains CRUD operations of users provided by a Mock API. There are two views: Datatable and User Form. Fetched users displayed in a datatable. In datatable view, you can edit existing users with the help of user form, delete selected users, sort those users by their roles in the navigation bar and search users by their username or email. Datatable also has a pagination feature. In user form view, you can create new users and edit them. 
+
+### Github Pages Link of the Project
+https://b21827483.github.io/Frontend-Evaluation-Task/
