@@ -20,9 +20,11 @@ function TabsNavbar(props) {
     return (
         <Tabs value={value}
             onChange={handleChange}
+            variant="scrollable"
             sx={{
                 height: "48px",
-                width: "518px",
+                width: "600px",
+                '@media (max-width: 560px)': {width: "180px"}
             }}
             TabIndicatorProps={{
                 sx: {

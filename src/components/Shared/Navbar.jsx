@@ -15,7 +15,7 @@ function Navbar(props) {
                         p: "20px"}} disableGutters maxWidth={false}
                         >
             <Container sx={{display:"flex", alignItems: "center", justifyContent: "space-between"}} disableGutters maxWidth={false}>
-                <Container sx={{display:"flex", alignItems: "center", m:0}} disableGutters maxWidth={false}>
+                <Container sx={{display:"flex", alignItems: "center", m:0, '@media (max-width: 800px)': {display: "none"}}} disableGutters maxWidth={false}>
                     <LogoButton />
                 </Container>
                 <Container sx={{position: "relative", top: "17px"}} disableGutters maxWidth={false}>

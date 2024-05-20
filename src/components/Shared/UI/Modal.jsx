@@ -18,6 +18,7 @@ function ModalOverlay(props) {
                           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.25)",
                           top: "10vh",
                           left: "40%",
+                          '@media (max-width: 560px)': {left: "7.5%"} ,
                          display:"flex", 
                          flexDirection:"column", 
                          height:"556px", 
